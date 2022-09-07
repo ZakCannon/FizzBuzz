@@ -1,7 +1,5 @@
 require_relative 'TypeHandles'
-
-testf = parsestring("testing strings: ", ["a", "b", "c"])
-puts testf
+require_relative 'FizzBuzzLoops'
 
 puts "Rule selection, as per softwire docs. Type numbers (out of 3, 5, 7, 11, 13, and 17) for which you want the standard
 rules to apply, separated by a space"
@@ -29,60 +27,4 @@ first_n = parseint("Enter range: from")
 last_n = parseint("To")
 puts "\n Result: \n"
 
-for n in first_n..last_n do
-  printstring = []
-  if n % 3 == 0 && default_rules.include?("3")
-    printstring.push("Fizz")
-  end
-
-  if n % 13 == 0 && default_rules.include?("13")
-    printstring.push("Fezz")
-  end
-
-  if n % 5 == 0 && default_rules.include?("5")
-    printstring.push("Buzz")
-  end
-
-  if n % 7 == 0 && default_rules.include?("7")
-    printstring.push("Bang")
-  end
-
-  if n % 11 == 0 && default_rules.include?("11")
-    printstring = ["Bong"]
-  end
-
-  if n % 13 == 0 && default_rules.include?("13")
-    if !printstring.include?("Fezz")
-      printstring.unshift("Fezz")
-    end
-  end
-
-  if n % 17 == 0 && default_rules.include?("17")
-    printstring.reverse!
-  end
-
-  unless n_new_rules.zero?
-    new_rules.each do |mult, rule|
-      if n % mult == 0
-        if rule.include?("e")
-          printstring.push(rule[0])
-        end
-
-        if rule.include?("s")
-          printstring.unshift(rule[0])
-        end
-      end
-    end
-  end
-
-  if printstring == []
-    printstring = false
-  end
-
-  if printstring
-    puts printstring.join()
-  else
-    puts n
-  end
-
-end
+fizz_buzz_loop(first_n, last_n, default_rules, new_rules, n_new_rules)
