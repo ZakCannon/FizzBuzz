@@ -1,33 +1,33 @@
+require_relative 'TypeHandles'
+
+testf = parsestring("testing strings: ", ["a", "b", "c"])
+puts testf
+
 puts "Rule selection, as per softwire docs. Type numbers (out of 3, 5, 7, 11, 13, and 17) for which you want the standard
 rules to apply, separated by a space"
 default_rules = gets.chomp
 default_rules.split(/ /)
 
-puts "Designing new rules. First, enter number of new rules to generate: "
-n_new_rules = gets.chomp.to_i
+n_new_rules = parseint("Designing new rules. First, enter number of new rules to generate: ")
 
-unless n_new_rules == 0
+unless n_new_rules.zero?
   new_rules = {}
   for n in 1..n_new_rules do
-    puts "Enter multiple which you want a new output for: "
-    target_mult = gets.chomp.to_i
+    target_mult = parseint("Enter multiple which you want a new output for: ")
 
     puts "Enter string to replace number with: "
     ret_string = gets.chomp.to_s
 
-    puts "String appears at start (s) or end (e) of final result? Note that new rules override softwire ones,
-    and later rules take priority"
-    string_loc = gets.chomp.to_s
+    string_loc = parsestring("String appears at start (s) or end (e) of final result? Note that new rules override softwire ones,
+    and later rules take priority", ["e", "s"])
 
     new_rules[target_mult] = [ret_string, string_loc]
   end
 end
 
-puts "Enter range: from"
-first_n = gets.chomp.to_i
-puts "To"
-last_n = gets.chomp.to_i
-puts "Result: \n"
+first_n = parseint("Enter range: from")
+last_n = parseint("To")
+puts "\n Result: \n"
 
 for n in first_n..last_n do
   printstring = []
@@ -61,7 +61,7 @@ for n in first_n..last_n do
     printstring.reverse!
   end
 
-  unless n_new_rules == 0
+  unless n_new_rules.zero?
     new_rules.each do |mult, rule|
       if n % mult == 0
         if rule.include?("e")
