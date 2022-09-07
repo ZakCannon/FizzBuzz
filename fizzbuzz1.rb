@@ -1,4 +1,9 @@
-for n in 1..300 do
+puts "Enter range: from"
+first_n = gets.chomp.to_i
+puts "To"
+last_n = gets.chomp.to_i
+
+for n in first_n..last_n do
   printstring = []
   if n % 3 == 0
     printstring.push("Fizz")
