@@ -1,17 +1,29 @@
-for n in 0..100 do
-
+for n in 1..200 do
+  printstring = ""
   if n % 3 == 0
-    if n % 5 == 0
-      puts "FizzBuzz"
-      next
-    end
-    puts "Fizz"
-    next
+    printstring = printstring + "Fizz"
   end
 
   if n % 5 == 0
-    puts "Buzz"
-    next
+    printstring = printstring + "Buzz"
   end
-  puts n
+
+  if n % 7 == 0
+    printstring = printstring + "Bang"
+  end
+
+  if n % 11 == 0
+    printstring = "Bang"
+  end
+
+  if printstring == ""
+    printstring = false
+  end
+
+  if printstring
+    puts printstring
+  else
+    puts n
+  end
+
 end
